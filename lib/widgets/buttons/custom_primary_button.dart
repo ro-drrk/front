@@ -4,9 +4,11 @@ import 'package:pill_cart/helper/constant.dart';
 
 class CPrimaryButton extends StatelessWidget {
   final String buttonText;
+  final VoidCallback onPressed;
 
   const CPrimaryButton({
     required this.buttonText,
+    required this.onPressed,
   });
 
   @override
@@ -14,7 +16,7 @@ class CPrimaryButton extends StatelessWidget {
     return Container(
       height: 46,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           buttonText,
         ),

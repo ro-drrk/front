@@ -63,39 +63,44 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: 32,
               ),
-              CTextFormField(
-                preIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Icon(
-                    Icons.phone,
-                    color: kBrand800,
-                  ),
-                ),
-                sufIcon: null,
-                labelText: "Phone Number",
-                preText: "+963 ",
-              ),
+              // CTextFormField(
+              //   preIcon: Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 16),
+              //     child: Icon(
+              //       Icons.phone,
+              //       color: kBrand800,
+              //     ),
+              //   ),
+              //   sufIcon: null,
+              //   labelText: "Phone Number",
+              //   preText: "+963 ",
+              // //  textEditingController: loginController.passwordController,
+              // ),
               SizedBox(
                 height: 16,
               ),
-              CTextFormField(
-                passwordInVisible: true,
-                isSuffixIcon: true,
-                preIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Icon(
-                    Icons.lock,
-                    color: kBrand800,
-                  ),
-                ),
-                sufIcon: Icons.remove_red_eye,
-                labelText: "Password",
-                preText: null,
-              ),
+              // CTextFormField(
+              //   passwordInVisible: true,
+              //   isSuffixIcon: true,
+              //   preIcon: Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 16),
+              //     child: Icon(
+              //       Icons.lock,
+              //       color: kBrand800,
+              //     ),
+              //   ),
+              //   sufIcon: Icons.remove_red_eye,
+              //   labelText: "Password",
+              //   preText: null,
+              //  // textEditingController: loginController.passwordController,
+              // ),
               SizedBox(
                 height: 20,
               ),
-              CPrimaryButton(buttonText: "Login"),
+              CPrimaryButton(
+                buttonText: "Login",
+                onPressed: () {},
+              ),
               SizedBox(
                 height: 20,
               ),
