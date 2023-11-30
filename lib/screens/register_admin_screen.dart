@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pill_cart/controller/register_controller.dart';
+import 'package:pill_cart/controller/register_admin_controller.dart';
 import 'package:pill_cart/helper/constant.dart';
-import 'package:pill_cart/widgets/custom_snackbar.dart';
 import 'package:pill_cart/widgets/buttons/custom_primary_button.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
-class RegisterScreen extends StatefulWidget {
-  RegisterScreen({super.key});
+class RegisterAdminScreen extends StatefulWidget {
+  RegisterAdminScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<RegisterAdminScreen> createState() => _RegisterAdminScreen();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  RegisterController registerController = Get.put(RegisterController());
+class _RegisterAdminScreen extends State<RegisterAdminScreen> {
+  // RegisterUserController registerController = Get.find();
 
   final formkey = GlobalKey<FormState>();
 
@@ -37,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       ),
-      body: GetBuilder<RegisterController>(
+      body: GetBuilder<RegisterAdminController>(
         builder: (controller) {
           return SingleChildScrollView(
             child: Padding(
@@ -65,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 8,
                     ),
                     Text(
-                      "Hi doctor, Please enter your details to start makeing some orders.",
+                      "Hi mester, Please enter your details to start add midicen to your warehouse.",
                       style: GoogleFonts.inter(
                         textStyle: TextStyle(
                           //fontWeight: FontWeight.w500,
@@ -79,9 +78,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       style: GoogleFonts.inter(
                         textStyle: TextStyle(
-                            fontSize: 16,
-                            color: kBrand950,
-                            fontWeight: FontWeight.bold),
+                          fontSize: 16,
+                          color: kBrand950,
+                          //fontWeight: FontWeight.bold
+                        ),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -90,8 +90,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       controller: controller.firstNameController,
                       decoration: InputDecoration(
-                        // hintText: 'enter your First Name',
-                        labelText: 'First Name',
+                        hintText: 'First Name',
+                        // labelText: 'First Name',
                         floatingLabelBehavior: FloatingLabelBehavior.auto,
                         labelStyle: GoogleFonts.inter(
                           textStyle: TextStyle(fontSize: 16, color: kBrand800),
@@ -246,7 +246,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       buttonText: "Register",
                       onPressed: () async {
                         if (formkey.currentState!.validate()) {
-                          controller.register();
+                          controller.register_admin();
                         }
 
                         // print(await registerController.token());

@@ -38,7 +38,10 @@ dependencies:
   google_fonts: ^6.1.0
   get: ^4.6.6
   http: ^1.1.0
-  # shared_preferences: 
+  get_storage: ^2.1.1
+  font_awesome_flutter: ^10.6.0
+  
+ 
 
 dev_dependencies:
   flutter_test:
