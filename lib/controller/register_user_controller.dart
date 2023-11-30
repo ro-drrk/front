@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:pill_cart/models/user_model.dart';
 import 'package:pill_cart/utils/api_endpoints.dart';
 import 'package:pill_cart/widgets/custom_snackbar.dart';
 import 'package:pill_cart/widgets/custom_loader.dart';
 
 class RegisterUserController extends GetxController {
-  bool isScure = true;
-
+  late bool isScure;
+ 
+  User? user;
   late TextEditingController firstNameController,
       lastNameController,
       phoneNumberController,
@@ -19,7 +21,10 @@ class RegisterUserController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     isScure = true;
+
+
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
     phoneNumberController = TextEditingController();
@@ -29,7 +34,9 @@ class RegisterUserController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+
     isScure = true;
+
     firstNameController.dispose();
     lastNameController.dispose();
     phoneNumberController.dispose();
@@ -41,7 +48,7 @@ class RegisterUserController extends GetxController {
     update();
   }
 
-  register_user() async {
+  registerUser() async {
     try {
       Loader.showLoading();
       var resopnse = await http.post(
@@ -56,9 +63,11 @@ class RegisterUserController extends GetxController {
       if (resopnse.statusCode == 200) {
         var data = await jsonDecode(resopnse.body);
         var token = data['token'];
-        var storage = GetStorage();
+
+        GetStorage storage = GetStorage();
         storage.write('token', token);
-        print(GetStorage().read('token'));
+
+        user = User.fromJson(data['user']);
         firstNameController.clear();
         lastNameController.clear();
         phoneNumberController.clear();
@@ -74,14 +83,15 @@ class RegisterUserController extends GetxController {
     } catch (e) {
       Get.back();
       showDialog(
-          context: Get.context!,
-          builder: (context) {
-            return SimpleDialog(
-              title: Text('Error'),
-              contentPadding: EdgeInsets.all(20),
-              children: [Text(e.toString())],
-            );
-          });
+        context: Get.context!,
+        builder: (context) {
+          return SimpleDialog(
+            title: Text('Error'),
+            contentPadding: EdgeInsets.all(20),
+            children: [Text(e.toString())],
+          );
+        },
+      );
     }
   }
 
@@ -102,8 +112,6 @@ class RegisterUserController extends GetxController {
       storage.remove('token');
 
       if (resopnse.statusCode == 200) {
-        var data = await jsonDecode(resopnse.body);
-
         customSnackbar("success", "Logged out", "success");
         Loader.hideLoading();
         Get.offAllNamed("/register_user");

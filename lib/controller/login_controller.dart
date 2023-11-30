@@ -11,7 +11,7 @@ import 'package:pill_cart/widgets/custom_loader.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
-  bool isScure = true;
+  late bool isScure;
 
   late TextEditingController phoneNumberController, passwordController;
   // SharedPref pref = SharedPref();
@@ -20,7 +20,7 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    bool isScure = true;
+    isScure = true;
     phoneNumberController = TextEditingController();
     passwordController = TextEditingController();
   }
@@ -63,8 +63,8 @@ class LoginController extends GetxController {
             var token = data['token'];
             var storage = GetStorage();
             storage.write('token', token);
-            phoneNumberController.dispose();
-            passwordController.dispose();
+            phoneNumberController.clear();
+            passwordController.clear();
             Loader.hideLoading();
             customSnackbar("success", "Logged in!", "success");
 
