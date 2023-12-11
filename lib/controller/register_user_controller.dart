@@ -11,12 +11,13 @@ import 'package:pill_cart/widgets/custom_loader.dart';
 
 class RegisterUserController extends GetxController {
   late bool isScure;
- 
+
   User? user;
   late TextEditingController firstNameController,
       lastNameController,
       phoneNumberController,
       passwordController;
+
 
   @override
   void onInit() {
@@ -24,12 +25,12 @@ class RegisterUserController extends GetxController {
 
     isScure = true;
 
-
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
     phoneNumberController = TextEditingController();
     passwordController = TextEditingController();
   }
+
 
   @override
   void onClose() {
@@ -37,10 +38,10 @@ class RegisterUserController extends GetxController {
 
     isScure = true;
 
-    firstNameController.dispose();
-    lastNameController.dispose();
-    phoneNumberController.dispose();
-    passwordController.dispose();
+    firstNameController.clear();
+    lastNameController.clear();
+    phoneNumberController.clear();
+    passwordController.clear();
   }
 
   visiblPassword() {
@@ -68,10 +69,15 @@ class RegisterUserController extends GetxController {
         storage.write('token', token);
 
         user = User.fromJson(data['user']);
+        String firstName = user!.firstName;
+        storage.write('firstName', firstName);
         firstNameController.clear();
         lastNameController.clear();
         phoneNumberController.clear();
         passwordController.clear();
+        print(
+            'from the ontroller ${user?.firstName ?? 'no name in controller'}');
+        print(GetStorage().read('token'));
         Loader.hideLoading();
         customSnackbar("success", "Registeration completed!", "success");
         Get.offAllNamed("/home_user");
@@ -110,8 +116,13 @@ class RegisterUserController extends GetxController {
       );
       var storage = GetStorage();
       storage.remove('token');
+      storage.remove('firstName');
 
       if (resopnse.statusCode == 200) {
+        firstNameController.clear();
+        lastNameController.clear();
+        phoneNumberController.clear();
+        passwordController.clear();
         customSnackbar("success", "Logged out", "success");
         Loader.hideLoading();
         Get.offAllNamed("/register_user");

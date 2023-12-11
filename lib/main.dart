@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pill_cart/controller/register_user_controller.dart';
+import 'package:pill_cart/controller/bindings/home_controller_bindings.dart';
+import 'package:pill_cart/controller/bindings/login_controller_bindings.dart';
+import 'package:pill_cart/controller/bindings/register_controller_bindings.dart';
 import 'package:pill_cart/helper/constant.dart';
+import 'package:pill_cart/models/search_result_model.dart.dart';
 import 'package:pill_cart/screens/about_us_screen.dart';
 import 'package:pill_cart/screens/account_settings_screen.dart';
 import 'package:pill_cart/screens/home_user_screen.dart';
 import 'package:pill_cart/screens/login_screen.dart';
 import 'package:pill_cart/screens/order_history_scree.dart';
 import 'package:pill_cart/screens/register_user_screen.dart';
+import 'package:pill_cart/screens/search_result_scree.dart';
 import 'package:pill_cart/screens/settings_scree.dart';
 
 void main() async {
@@ -19,8 +23,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  // final RegisterUserController registerUserController =
-  //     Get.put(RegisterUserController());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -28,17 +30,41 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.cupertino,
       transitionDuration: const Duration(milliseconds: 200),
       debugShowCheckedModeBanner: false,
-
       initialRoute:
           GetStorage().read('token') == null ? '/register_user' : '/home_user',
-      // initialRoute: '/home_user',
       getPages: [
-        GetPage(name: '/home_user', page: () => HomeUserScreen()),
-        GetPage(name: '/register_user', page: () => RegisterUserScreen()),
-        GetPage(name: '/login', page: () => LoginScreen()),
-        GetPage(name: '/order_history', page: () => OrderHistoryScreen()),
-        GetPage(name: '/settings', page: () => SettingsScreen()),
-        GetPage(name: '/about_us', page: () => AboutUsScreen()),
+        GetPage(
+          name: '/home_user',
+          page: () => HomeUserScreen(),
+          binding: HomeControllerBindings(),
+        ),
+        GetPage(
+          name: '/register_user',
+          page: () => RegisterUserScreen(),
+          binding: RegisterUserControllerBindings(),
+        ),
+        GetPage(
+          name: '/login',
+          page: () => LoginScreen(),
+          binding: LoginControllerBindings(),
+        ),
+        GetPage(
+          name: '/order_history',
+          page: () => OrderHistoryScreen(),
+        ),
+        GetPage(
+          name: '/settings',
+          page: () => SettingsScreen(),
+        ),
+        GetPage(
+          name: '/about_us',
+          page: () => AboutUsScreen(),
+        ),
+        GetPage(
+          name: '/search_result',
+          page: () => SearchResultsScreen(),
+          // binding: SearchResultsScreen(),
+        ),
         GetPage(name: '/account_settings', page: () => AccountSettingsScreen()),
       ],
     );
@@ -47,8 +73,9 @@ class MyApp extends StatelessWidget {
 
 ThemeData customLightTheme = ThemeData(
   brightness: Brightness.light,
-  fontFamily: 'Lexend_Regular',
+  // fontFamily: 'Lexend_Regular',
   appBarTheme: AppBarTheme(
+    centerTitle: true,
     toolbarHeight: 56,
     backgroundColor: Colors.transparent,
     elevation: 0,

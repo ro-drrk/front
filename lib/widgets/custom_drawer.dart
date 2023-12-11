@@ -16,8 +16,8 @@ class CustomDrawer extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       shadowColor: kBrand100,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(40), topRight: Radius.circular(40))),
+          borderRadius: BorderRadiusDirectional.only(
+              bottomStart: Radius.circular(40), topStart: Radius.circular(40))),
       child: Drawer(
         backgroundColor: kBrand100,
         width: width * 0.65,

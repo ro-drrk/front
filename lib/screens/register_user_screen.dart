@@ -14,7 +14,7 @@ import 'package:pill_cart/widgets/text_fields/custom_text_form_field.dart';
 class RegisterUserScreen extends StatelessWidget {
   RegisterUserScreen({super.key});
 
-  RegisterUserController registerUserController = Get.put(RegisterUserController());
+  RegisterUserController registerUserController = Get.find();
 
   final formkey = GlobalKey<FormState>();
 
@@ -160,9 +160,9 @@ class RegisterUserScreen extends StatelessWidget {
                       CPrimaryButton(
                         buttonText: "Register",
                         onPressed: () async {
+                          // Get.toNamed('/home_user');
                           if (formkey.currentState!.validate()) {
                             controller.registerUser();
-                            // Get.toNamed('/home_user');
                           }
                         },
                       ),

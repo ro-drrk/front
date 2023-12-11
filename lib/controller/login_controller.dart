@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:pill_cart/models/user_model.dart';
 import 'package:pill_cart/utils/api_endpoints.dart';
 import 'package:pill_cart/widgets/custom_snackbar.dart';
 import 'package:pill_cart/widgets/custom_loader.dart';
@@ -12,6 +13,7 @@ import 'package:pill_cart/widgets/custom_loader.dart';
 
 class LoginController extends GetxController {
   late bool isScure;
+  User? user;
 
   late TextEditingController phoneNumberController, passwordController;
   // SharedPref pref = SharedPref();
@@ -29,8 +31,8 @@ class LoginController extends GetxController {
   void onClose() {
     super.onClose();
     isScure = true;
-    phoneNumberController.dispose();
-    passwordController.dispose();
+    phoneNumberController.clear();
+    passwordController.clear();
   }
 
   visiblPassword() {
@@ -59,25 +61,15 @@ class LoginController extends GetxController {
           Loader.hideLoading();
           customSnackbar("Failed!", "Wrong phone number", "error");
         } else {
-          if (data['user']['role'] == 'Admin') {
-            var token = data['token'];
-            var storage = GetStorage();
-            storage.write('token', token);
-            phoneNumberController.clear();
-            passwordController.clear();
-            Loader.hideLoading();
-            customSnackbar("success", "Logged in!", "success");
+          var token = data['token'];
+          var storage = GetStorage();
+          storage.write('token', token);
+          print(GetStorage().read('token'));
 
-            Get.offAllNamed("/home_admin");
-          } else {
-            var token = data['token'];
-            var storage = GetStorage();
-            storage.write('token', token);
-            Loader.hideLoading();
-            customSnackbar("success", "Logged in!", "success");
+          Loader.hideLoading();
+          customSnackbar("success", "Logged in!", "success");
 
-            Get.offAllNamed("/home_user");
-          }
+          Get.offAllNamed("/home_user");
         }
       } else {
         Loader.hideLoading();
