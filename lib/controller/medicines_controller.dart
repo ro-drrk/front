@@ -21,8 +21,8 @@ class MedicinesController extends GetxController {
       expiringMonthController;
 
   @override
-  void onInit() {
-    super.onInit();
+  void get onInit {
+    
 
     tradeNameController = TextEditingController();
     genericNameController = TextEditingController();

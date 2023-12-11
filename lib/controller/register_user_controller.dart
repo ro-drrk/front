@@ -20,8 +20,8 @@ class RegisterUserController extends GetxController {
 
 
   @override
-  void onInit() {
-    super.onInit();
+  void get onInit {
+    
 
     isScure = true;
 

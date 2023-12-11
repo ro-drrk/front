@@ -8,6 +8,7 @@ import 'package:pill_cart/helper/constant.dart';
 import 'package:pill_cart/models/search_result_model.dart.dart';
 import 'package:pill_cart/screens/about_us_screen.dart';
 import 'package:pill_cart/screens/account_settings_screen.dart';
+import 'package:pill_cart/screens/homeScreen.dart';
 import 'package:pill_cart/screens/home_user_screen.dart';
 import 'package:pill_cart/screens/login_screen.dart';
 import 'package:pill_cart/screens/order_history_scree.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/home_user',
-          page: () => HomeUserScreen(),
+          page: () => HomePage(),
           binding: HomeControllerBindings(),
         ),
         GetPage(

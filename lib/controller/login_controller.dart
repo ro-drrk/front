@@ -20,8 +20,8 @@ class LoginController extends GetxController {
   // Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   @override
-  void onInit() {
-    super.onInit();
+  void get onInit {
+   
     isScure = true;
     phoneNumberController = TextEditingController();
     passwordController = TextEditingController();

@@ -20,9 +20,9 @@ class Medicines {
     int expiringMonth;
     DateTime createdAt;
     DateTime updatedAt;
-   // Category category;
-   // Category company;
-   // Category genericName;
+   Category category;
+   Category company;
+   Category genericName;
 
     Medicines({
         required this.id,
@@ -36,9 +36,9 @@ class Medicines {
         required this.expiringMonth,
         required this.createdAt,
         required this.updatedAt,
-      //  required this.category,
-      //  required this.company,
-      //  required this.genericName, 
+       required this.category,
+       required this.company,
+       required this.genericName, 
     });
 
     factory Medicines.fromJson(Map<String, dynamic> json) => Medicines(
@@ -52,9 +52,9 @@ class Medicines {
         genericNameId: json["generic_name_id"],
         updatedAt: DateTime.parse(json["updated_at"]),
         createdAt: DateTime.parse(json["created_at"]),
-      //  category: Category.fromJson(json["category"]),
-      //  company: Category.fromJson(json["company"]),
-      //  genericName: Category.fromJson(json["generic_name"]),
+       category: Category.fromJson(json["category"]),
+       company: Category.fromJson(json["company"]),
+       genericName: Category.fromJson(json["generic_name"]),
         id: json["id"],
     );
 
@@ -70,9 +70,9 @@ class Medicines {
         "expiringMonth": expiringMonth,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-       // "category": category.toJson(),
-      //  "company": company.toJson(),
-       // "generic_name": genericName.toJson(),
+       "category": category.toJson(),
+       "company": company.toJson(),
+       "generic_name": genericName.toJson(),
     };
 }
 
