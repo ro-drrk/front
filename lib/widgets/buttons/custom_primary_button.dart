@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pill_cart/helper/constant.dart';
+import 'package:pill_cart/main.dart';
 
 class CPrimaryButton extends StatelessWidget {
   final String buttonText;
+  final VoidCallback onPressed;
 
   const CPrimaryButton({
     required this.buttonText,
+    required this.onPressed,
   });
 
   @override
@@ -14,7 +17,7 @@ class CPrimaryButton extends StatelessWidget {
     return Container(
       height: 46,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           buttonText,
         ),
@@ -24,12 +27,7 @@ class CPrimaryButton extends StatelessWidget {
           foregroundColor: Colors.white,
           elevation: 6,
           shadowColor: Colors.black26,
-          textStyle: GoogleFonts.inter(
-            textStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
-          ),
+          textStyle: customLightTheme.textTheme.labelLarge,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         ),
